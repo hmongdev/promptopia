@@ -19,6 +19,7 @@ const UserSchema = new Schema({
 	},
 });
 
+// every time a user logs in, check if user exists first
 const User = models.User || model('User', UserSchema);
 
 export default User;
