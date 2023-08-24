@@ -1,4 +1,4 @@
-import { Link } from 'next/link';
+import Link from 'next/link';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 	return (
@@ -15,7 +15,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 			</p>
 
 			<form
-				onSubmit="handleSubmit"
+				onSubmit={handleSubmit}
 				className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
 			>
 				<label>
@@ -32,34 +32,37 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 									.value,
 							})
 						}
-						placeholder="Write your prompt here..."
+						placeholder="Write your post here"
 						required
-						className="form_textarea"
+						className="form_textarea "
 					/>
 				</label>
+
 				<label>
 					<span className="font-satoshi font-semibold text-base text-gray-700">
-						Tag {` `}
+						Field of Prompt{' '}
 						<span className="font-normal">
 							(#product,
-							#webdevelopment, #idea)
+							#webdevelopment, #idea,
+							etc.)
 						</span>
 					</span>
-
-					<textarea
+					<input
 						value={post.tag}
 						onChange={(e) =>
 							setPost({
 								...post,
-								prompt: e.target
+								tag: e.target
 									.value,
 							})
 						}
-						placeholder="#tag"
+						type="text"
+						placeholder="#Tag"
 						required
 						className="form_input"
 					/>
 				</label>
+
 				<div className="flex-end mx-3 mb-5 gap-4">
 					<Link
 						href="/"
@@ -67,13 +70,14 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 					>
 						Cancel
 					</Link>
+
 					<button
 						type="submit"
 						disabled={submitting}
 						className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
 					>
 						{submitting
-							? `${type}...`
+							? `${type}ing...`
 							: type}
 					</button>
 				</div>
